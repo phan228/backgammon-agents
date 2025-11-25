@@ -9,7 +9,15 @@ import sys
 
 # Below are the agents used in "Play Offline"
 # To change, simply add an import and change p1 or p2 to desired Agent
-from agents import randomAgent, SkeletonAgent, backgammon_dsbg, backgammon_ssbg
+from agents import randomAgent, SkeletonAgent
+# backgammon_dsbg and backgammon_ssbg may live in `my_agents/` in some copies of the repo.
+try:
+    from agents import backgammon_dsbg, backgammon_ssbg
+except Exception:
+    try:
+        from my_agents import backgammon_dsbg, backgammon_ssbg
+    except Exception:
+        raise
 player1 = backgammon_dsbg.BackgammonPlayer()
 player2 = backgammon_ssbg.BackgammonPlayer()
 

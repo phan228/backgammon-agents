@@ -97,7 +97,17 @@ DONE = False
 
 # Below are the agents used in "Play Offline"
 # To change, simply add an import and change p1 or p2 to desired Agent
-from agents import randomAgent, SkeletonAgent, backgammon_dsbg, backgammon_ssbg
+from agents import randomAgent, SkeletonAgent
+# backgammon_dsbg and backgammon_ssbg were sometimes placed in `my_agents/`.
+# Try importing them from `agents` first; if not available, fall back to `my_agents`.
+try:
+    from agents import backgammon_dsbg, backgammon_ssbg
+except Exception:
+    try:
+        from my_agents import backgammon_dsbg, backgammon_ssbg
+    except Exception:
+        # If both imports fail, let the error surface so the caller sees the issue
+        raise
 ##agent1 represents the white checkers and agent2 the red checkers
 agent1 = backgammon_dsbg.BackgammonPlayer()
 agent2 = SkeletonAgent.BackgammonPlayer()
